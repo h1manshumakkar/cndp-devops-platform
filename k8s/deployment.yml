@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cndp-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cndp-api
+  template:
+    metadata:
+      labels:
+        app: cndp-api
+    spec:
+      containers:
+      - name: cndp-api
+        image: cndpacr12345.azurecr.io/cndp-api:d5360529125026a67a8a7ca1fc2fbe6e78fa4375
+        ports:
+        - containerPort: 5000
