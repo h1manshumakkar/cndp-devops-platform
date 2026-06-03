@@ -1,7 +1,3 @@
-provider "azurerm" {
-  features {}
-}
-
 resource "azurerm_kubernetes_cluster" "aks" {
   name                = "cndp-aks-cluster"
   location            = azurerm_resource_group.main.location
@@ -11,7 +7,7 @@ resource "azurerm_kubernetes_cluster" "aks" {
   default_node_pool {
     name       = "nodepool1"
     node_count = 1
-    vm_size    = "Standard_B2s"
+    vm_size    = "Standard_B2ps_v2"
   }
 
   identity {
