@@ -13,6 +13,10 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    # ✅ IMPORTANT: Enable multi-platform builds
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
     - name: Login to Azure Container Registry
       uses: docker/login-action@v3
       with:
@@ -20,10 +24,11 @@ jobs:
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
 
-    - name: Build Docker image
-      run: |
-        docker build --platform linux/amd64 -t ${{ secrets.ACR_LOGIN_SERVER }}/cndp-api:${{ github.sha }} ./app
-
-    - name: Push Docker image
-      run: |
-        docker push ${{ secrets.ACR_LOGIN_SERVER }}/cndp-api:${{ github.sha }}
+    # 🚀 Build + Push (correct way)
+    - name: Build and Push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: ./app
+        push: true
+        tags: ${{ secrets.ACR_LOGIN_SERVER }}/cndp-api:${{ github.sha }}
+        platforms: linux/amd64
