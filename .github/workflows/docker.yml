@@ -31,4 +31,4 @@ jobs:
         context: ./app
         push: true
         tags: ${{ secrets.ACR_LOGIN_SERVER }}/cndp-api:${{ github.sha }}
-        platforms: linux/amd64
+        platforms: linux/arm64
