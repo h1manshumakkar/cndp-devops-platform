@@ -14,6 +14,7 @@ spec:
     spec:
       containers:
       - name: cndp-api
-        image: cndpacr12345.azurecr.io/cndp-api:51a4ee6ed66941552e60a85d00e15352439960df
+        image: cndpacr12345.azurecr.io/cndp-api:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
