@@ -50,10 +50,16 @@ jobs:
           --overwrite-existing
 
     # 7. Deploy to AKS
-    - name: Deploy to Kubernetes
+    # - name: Deploy to Kubernetes
+    #   run: |
+    #     kubectl apply -f k8s/deployment.yml
+    #     kubectl apply -f k8s/service.yml
+
+    # 8. Deploy to AKS using Helm
+    - name: Deploy with Helm
       run: |
-        kubectl apply -f k8s/deployment.yml
-        kubectl apply -f k8s/service.yml
+        helm upgrade --install cndp-api ./helm/cndp-api \
+        --set image.tag=${{ github.sha }}    
 
     # 8. Restart rollout (force update)
     - name: Restart deployment
@@ -61,6 +67,10 @@ jobs:
         kubectl rollout restart deployment cndp-api
 
     # 9. Verify deployment
-    - name: Check status
+    # - name: Check status
+    #   run: |
+    #     kubectl rollout status deployment cndp-api
+    #9. Using Helm
+    - name: Check Helm release status
       run: |
-        kubectl rollout status deployment cndp-api
+        helm status cndp-api

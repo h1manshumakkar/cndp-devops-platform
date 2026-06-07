@@ -1,0 +1,11 @@
+appName: cndp-api
+
+replicaCount: 1
+
+image:
+  repository: cndpacr12345.azurecr.io/cndp-api
+  tag: latest
+
+service:
+  port: 80
+  targetPort: 5000
