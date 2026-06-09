@@ -30,5 +30,5 @@ hpa:
   minReplicas: 1
   maxReplicas: 2
 
-httproute:
+httpRoute:
   enabled: false
