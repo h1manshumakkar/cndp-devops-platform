@@ -38,7 +38,7 @@ jobs:
       with:
         context: ./app
         push: true
-        tags: ${{ secrets.ACR_LOGIN_SERVER }}/cndp-api:latest
+        tags: ${{ secrets.ACR_LOGIN_SERVER }}/cndp-api:${{ github.sha }}
         platforms: linux/arm64
 
     # 6. Get AKS credentials
