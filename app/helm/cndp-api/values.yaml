@@ -25,7 +25,7 @@ ingress:
           pathType: Prefix
   tls: []
 
-hpa:
+autoscaling:
   enabled: false
   minReplicas: 1
   maxReplicas: 2
