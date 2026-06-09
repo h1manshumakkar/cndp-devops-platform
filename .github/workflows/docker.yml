@@ -58,12 +58,7 @@ jobs:
     # 8. Deploy to AKS using Helm
     - name: Deploy with Helm
       run: |
-<<<<<<< HEAD
-        helm upgrade --install cndp-api .\helm\cndp-api\
-=======
-        helm upgrade --install cndp-api ./helm/cndp-api\
->>>>>>> c5691a2 (updating..)
-        --set image.tag=${{ github.sha }}    
+          helm upgrade --install cndp-api ./helm/cndp-api --set image.tag=${{ github.sha }}    
 
     # # 8. Restart rollout (force update)
     # - name: Restart deployment
