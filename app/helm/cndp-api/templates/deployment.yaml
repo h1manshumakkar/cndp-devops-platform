@@ -2,8 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.appName }}
+  labels: 
+    app: {{.Values.appName}}
 spec:
   replicas: {{ .Values.replicaCount }}
+
   selector:
     matchLabels:
       app: {{ .Values.appName }}
@@ -16,4 +19,26 @@ spec:
         - name: {{ .Values.appName }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
-            - containerPort: 5000
+            - containerPort: {{ .Values.service.targetPort }}
+
+          resources:
+            requests:
+              memory: {{ .Value.resources.request.memory}}
+              cpu: {{ .Value.resources.request.cpu}}
+            limits:
+              memory: {{ .Value.resources.limits.memory}}
+              cpu: {{ .Value.resources.limits.cpu}}
+
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.service.targetPort }}
+            initialDelaySeconds: 5
+            periodSeconds: 5
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ .Values.service.targetPort }}
+            initialDelaySeconds: 10
+            periodSeconds: 10  
