@@ -50,10 +50,10 @@ jobs:
           --overwrite-existing
       
 
-    - name: Debug directory
-      run: |
-          pwd
-          ls -R
+    # - name: Debug directory
+    #   run: |
+    #       pwd
+    #       ls -R
 
     # 7. Deploy to AKS
     # - name: Deploy to Kubernetes
