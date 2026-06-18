@@ -23,11 +23,11 @@ spec:
 
           resources:
             requests:
-              memory: {{ .Value.resources.request.memory}}
-              cpu: {{ .Value.resources.request.cpu}}
+              memory: {{ .Values.resources.request.memory}}
+              cpu: {{ .Values.resources.request.cpu}}
             limits:
-              memory: {{ .Value.resources.limits.memory}}
-              cpu: {{ .Value.resources.limits.cpu}}
+              memory: {{ .Values.resources.limits.memory}}
+              cpu: {{ .Values.resources.limits.cpu}}
 
           readinessProbe:
             httpGet:

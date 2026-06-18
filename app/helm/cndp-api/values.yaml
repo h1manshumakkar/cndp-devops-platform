@@ -1,6 +1,6 @@
 appName: cndp-api
 
-replicaCount: 1
+replicaCount: 2
 
 image:
   repository: cndpacr12345.azurecr.io/cndp-api
