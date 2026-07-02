@@ -24,11 +24,11 @@ serviceAccount:
   name: cndp-api
 
 ingress:
-  enabled: false
+  enabled: True
   className: ""
   annotations: {}
   hosts:
-    - host: example.local
+    - host: cndp.local
       paths:
         - path: /
           pathType: Prefix
